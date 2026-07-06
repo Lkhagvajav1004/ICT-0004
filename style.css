@@ -9,9 +9,10 @@ body{
 }
 
 header{
+    width: 100%;
     background:#011027;
     color:white;
-    padding:20px 40px;
+    padding:20px 0 0 0;
 }
 
 /* TOP ROW */
@@ -21,10 +22,21 @@ header{
     align-items:center;
     justify-content:space-between;
     gap:30px;
+    padding: 10px 40px;
 }
 
-.logo{
-    white-space:nowrap;
+.main-logo{
+    background-color: #011027;
+    width: auto;
+    height: 65px;
+    object-fit: contain;
+    display: block;
+}
+.logo-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px 0;
 }
 
 /* SEARCH */
@@ -75,7 +87,43 @@ header{
     width:20px;
     height:20px;
 }
+/* Categoreis */
+.category-nav{
+    width: 100%;
+    background-color: #0b2650; /* Мокап дээрх шиг тод цэнхэр өнгө */
+    display: flex;             /* Элементүүдийг нэг эгнээнд оруулна */
+    justify-content: center;   /* Цэснүүдийг вэб хуудасны голд байрлуулна */
+    align-items: center;       /* Бүх икон, текстийг босоо тэнхлэгээр голлуулна */
+    padding: 10px 0;        /* Дээд, доод талдаа зай авна */
+    gap: 20px;                 /* Цэс хоорондын зайг ижилхэн 20px болгоно */
+}
 
+.nav-icon{
+width: 20px;
+height: 20px;
+object-fit: contain;
+margin-right: 8px;
+vertical-align: middle;
+}
+.nav-item{
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+}
+
+.Sale{
+    background-color: #4f8be4; /* Тод улаан өнгө (эсвэл арай бараан бол #e62117) */
+    color: #ffffff;            /* Бичвэрийг цагаан өнгөтэй болгоно */
+    padding: 8px 16px;         /* Дээд доод талдаа 8px, баруун зүүн талдаа 16px дотор зай авна */
+    text-decoration: none;     /* Линкний доогуур зураасыг арилгана */
+   /* font-weight: bold;         /* Бичвэрийг бүдүүн болгоно */
+    display: inline-block;     /* Хайрцаг шиг хэлбэртэй ажиллахыг заана */
+    border-radius: 4px;        /* Булангуудыг нь үл ялиг бөөрөнхийлнө (Яг дөрвөлжин болгох бол 0px) */
+   /* text-transform: uppercase; /* Бүх үсгийг ТОМ ҮСЭГ болгоно */
+    transition: background 0.3s ease; /* Хулгана хүргэхэд зөөлөн өөрчлөгдөх эффект */
+}
 /* USER MENU */
 
 .user-menu{
