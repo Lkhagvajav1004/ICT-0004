@@ -79,7 +79,35 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         <a href="Sales.html" class="Sale">Sales Now on</a>
 
     </nav>
+
+
 </header>
+ <main class="content"> 
+        <div class="products"> 
+            <?php
+            $query = "SELECT id,name,brand,image FROM productdata";
+            //statement
+            $statement = $connection->prepare($query);
+            $statement -> execute();
+            $products = array();
+            $result = $statement -> get_result();
+            while($row = $result -> fetch_assoc()){
+                array_push( $products, $row);
+                            }
+                            //output products into page as html
+                            foreach($products as $item){
+                                $id = $item['id'];
+                                $name = $item['name'];
+                                $brand = $item['brand'];
+                                $image = $item['image'];
+
+                                echo "<div class='card'>
+                                <h4>$name</h4>
+                                </div>";
+                            }
+            ?>
+        </div>
+    </main>
 
 <section class="hero">
     <h2>Featured Sports Products</h2>
