@@ -228,3 +228,13 @@ footer{
     text-align:center;
     padding:20px;
 }
+@media (max-width: 768px) {
+    .order-grid {
+        flex-direction: column;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
