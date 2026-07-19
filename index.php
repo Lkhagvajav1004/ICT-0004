@@ -1,3 +1,6 @@
+<!-- <?php
+include "includes/database.php";
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,21 +74,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
     <nav class="category-nav">
         <a href="Football.html" class="nav-item"><img src="soccer.png" class="nav-icon" alt="Football">Football</a>
-        <a href="Basketball.html" class="nav-item"><img src="basketball.png" class="nav-icon">Basketball</a>
-        <a href="Cricket.html" class="nav-item"><img src="cricket.png" class="nav-icon">Cricket</a>
-        <a href="Tennis.html" class="nav-item"><img src="tennis.png" class="nav-icon">Tennis</a>
-        <a href="Swimming.html" class="nav-item"><img src="goggles.png" class="nav-icon">Swimming</a>
-        <a href="Accessories.html" class="nav-item"><img src="gym.png" class="nav-icon">Accessories</a>
+        <a href="Basketball.html" class="nav-item"><img src="basketball.png" class="nav-icon" alt="Basketball">Basketball</a>
+        <a href="Cricket.html" class="nav-item"><img src="cricket.png" class="nav-icon" alt="Cricket">Cricket</a>
+        <a href="Tennis.html" class="nav-item"><img src="tennis.png" class="nav-icon" alt="Tennis">Tennis</a>
+        <a href="Swimming.html" class="nav-item"><img src="goggles.png" class="nav-icon" alt="Swimming">Swimming</a>
+        <a href="Accessories.html" class="nav-item"><img src="gym.png" class="nav-icon" alt="Accessories">Accessories</a>
         <a href="Sales.html" class="Sale">Sales Now on</a>
 
     </nav>
 
 
 </header>
- <main class="content"> 
+ <!-- <main class="content"> 
         <div class="products"> 
             <?php
-            $query = "SELECT id,name,brand,image FROM productdata";
+           
+            $query = "SELECT * FROM productdata";
             //statement
             $statement = $connection->prepare($query);
             $statement -> execute();
@@ -107,7 +111,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
                             }
             ?>
         </div>
-    </main>
+    </main> -->
 
 <section class="hero">
     <h2>Featured Sports Products</h2>
