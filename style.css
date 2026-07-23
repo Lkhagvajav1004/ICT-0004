@@ -238,3 +238,21 @@ footer{
         gap: 0;
     }
 }
+.content{
+    margin: 3em 2em;
+}
+.products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.5em;
+}
+.product-image{
+    max-width:100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

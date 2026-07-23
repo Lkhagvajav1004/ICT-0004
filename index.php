@@ -1,6 +1,7 @@
-<!-- <?php
+<?php
+session_start();
 include "includes/database.php";
-?> -->
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,7 @@ include "includes/database.php";
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ProGear Hub</title>
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -18,11 +18,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
     <div class="top-header">
 
-       <a href="index.html" class="logo-link">
+       <a href="index.php" class="logo-link">
         <img src="logo.png" alt="ProGear Hub logo" class="main-logo">
        </a>
 
-        <form class="search-container" action="/search" method="GET">
+        <form class="search-container" action="search.php" method="GET">
             <input type="text"
                    class="search-input"
                    placeholder="Search Products..."
@@ -38,24 +38,32 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
         <div class="user-menu">
 
-            <a href="account.html" class="icon-item">
+            <a href="my-account.php" class="icon-item">
                 <i class="fa-regular fa-user"></i>
                 <span>My Account</span>
             </a>
 
-            <a href="joinus.html" class="icon-item">
+            <a href="my-account.php" class="icon-item">
                 <i class="fa-solid fa-user-plus"></i>
                 <span>Join Us</span>
             </a>
 
-            <a href="help.html" class="icon-item">
+            <a href="help.php" class="icon-item">
                 <i class="fa-regular fa-circle-question"></i>
                 <span>Help</span>
             </a>
 
-            <a href="cart.html" class="cart-btn">
+            <a href="cart.php" class="cart-btn">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart-count">0</span>
+                <span class="cart-count">
+                    <?php 
+                        $total_count = 0;
+                        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                            $total_count = array_sum($_SESSION['cart']);
+                        }
+                        echo $total_count;
+                    ?>
+                </span>
                 <span>Cart</span>
             </a>
 
@@ -64,54 +72,56 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     </div>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="orders.html">Orders</a>
-        <a href="about.html">About Us</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.php">Home</a>
+        <a href="shop.php">Shop</a>
+        <a href="orders.php">Orders</a>
+        <a href="about.php">About Us</a>
+        <a href="blog.php">Blog</a>
+        <a href="contact.php">Contact</a>
     </nav>
 
     <nav class="category-nav">
-        <a href="Football.html" class="nav-item"><img src="soccer.png" class="nav-icon" alt="Football">Football</a>
-        <a href="Basketball.html" class="nav-item"><img src="basketball.png" class="nav-icon" alt="Basketball">Basketball</a>
-        <a href="Cricket.html" class="nav-item"><img src="cricket.png" class="nav-icon" alt="Cricket">Cricket</a>
-        <a href="Tennis.html" class="nav-item"><img src="tennis.png" class="nav-icon" alt="Tennis">Tennis</a>
-        <a href="Swimming.html" class="nav-item"><img src="goggles.png" class="nav-icon" alt="Swimming">Swimming</a>
-        <a href="Accessories.html" class="nav-item"><img src="gym.png" class="nav-icon" alt="Accessories">Accessories</a>
-        <a href="Sales.html" class="Sale">Sales Now on</a>
-
+        <a href="Football.php" class="nav-item"><img src="soccer.png" class="nav-icon" alt="Football">Football</a>
+        <a href="Basketball.php" class="nav-item"><img src="basketball.png" class="nav-icon" alt="Basketball">Basketball</a>
+        <a href="Cricket.php" class="nav-item"><img src="cricket.png" class="nav-icon" alt="Cricket">Cricket</a>
+        <a href="Tennis.php" class="nav-item"><img src="tennis.png" class="nav-icon" alt="Tennis">Tennis</a>
+        <a href="Swimming.php" class="nav-item"><img src="goggles.png" class="nav-icon" alt="Swimming">Swimming</a>
+        <a href="Accessories.php" class="nav-item"><img src="gym.png" class="nav-icon" alt="Accessories">Accessories</a>
+        <a href="Sales.php" class="Sale">Sales Now on</a>
     </nav>
 
-
 </header>
- <!-- <main class="content"> 
-        <div class="products"> 
-            <?php
-           
-            $query = "SELECT * FROM productdata";
-            //statement
-            $statement = $connection->prepare($query);
-            $statement -> execute();
-            $products = array();
-            $result = $statement -> get_result();
-            while($row = $result -> fetch_assoc()){
-                array_push( $products, $row);
-                            }
-                            //output products into page as html
-                            foreach($products as $item){
-                                $id = $item['id'];
-                                $name = $item['name'];
-                                $brand = $item['brand'];
-                                $image = $item['image'];
 
-                                echo "<div class='card'>
-                                <h4>$name</h4>
-                                </div>";
-                            }
-            ?>
-        </div>
-    </main> -->
+<main class="content"> 
+    <div class="products"> 
+        <?php
+        $query = "SELECT id, name, brand, image, description, price FROM productdata";
+        $statement = $connection->prepare($query);
+        $statement->execute();
+        $products = array();
+        $result = $statement->get_result();
+        
+        while($row = $result->fetch_assoc()){
+            array_push($products, $row);
+        }
+        
+        foreach($products as $item){
+            $id = $item['id'];
+            $name = $item['name'];
+            $brand = $item['brand'];
+            $image = $item['image'];
+
+            echo "<div class='card'>
+                    <a href='detail.php?id=$id' class='product-link'>
+                        <img class='product-image' src='ProductImages/$image'>
+                        <h4 class='product-name'>$name</h4>
+                    </a>
+                    <p class='product-brand'>$brand</p>
+                  </div>";
+        }
+        ?>
+    </div>
+</main>
 
 <section class="hero">
     <h2>Featured Sports Products</h2>
